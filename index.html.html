@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sakura Bridge Memories — Anniversary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink-100: #ffd6e8;
+      --pink-200: #ffc1da;
+      --white: #ffffff;
+      --accent: #f7d1e0;
+      --text: #4a3a46;
+      --glass: rgba(255,255,255,0.7);
+      --card: rgba(255,255,255,0.85);
+      --shadow: 0 6px 18px rgba(74,58,70,0.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; color:var(--text);background:linear-gradient(180deg,var(--pink-100) 0%, #fff 60%);}
+
+    /* Container */
+    .wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:36px 18px;}
+    header{width:100%;max-width:980px;margin:12px 0 28px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,var(--pink-200),#fff);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+    .logo svg{width:42px;height:42px}
+    .title{font-family:'Great Vibes',cursive;font-size:28px;color:#8b4866}
+    nav{display:flex;gap:10px;align-items:center}
+    nav a{padding:8px 12px;border-radius:12px;text-decoration:none;font-weight:600;color:var(--text);background:transparent}
+    nav a.active, nav a:hover{background:linear-gradient(180deg,rgba(255,255,255,0.9),var(--accent));box-shadow:0 4px 12px rgba(0,0,0,0.06)}
+
+    /* Hero */
+    .hero{width:100%;max-width:980px;background:var(--card);border-radius:18px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .hero .left{display:flex;flex-direction:column;gap:12px}
+    .hero h1{margin:0;font-family:'Great Vibes',cursive;font-size:40px;color:#8b4866}
+    .hero p{margin:0;opacity:0.9}
+    .controls{display:flex;gap:10px;align-items:center;margin-top:12px}
+    .btn{background:#fff;border:none;padding:10px 14px;border-radius:12px;cursor:pointer;box-shadow:0 6px 12px rgba(0,0,0,0.06);font-weight:600}
+    .btn.pulse{animation:pulse 2.2s infinite}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+
+    /* Music player */
+    .music-card{display:flex;align-items:center;gap:12px;padding:10px;border-radius:12px;background:linear-gradient(90deg,rgba(255,255,255,0.8),rgba(255,255,255,0.6));}
+    .music-card input{border-radius:8px;padding:8px;border:1px solid rgba(0,0,0,0.06);min-width:200px}
+
+    /* Gallery */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+
+    .card{background:var(--white);border-radius:14px;padding:12px;box-shadow:0 6px 18px rgba(74,58,70,0.05);}
+    .thumb{width:100%;height:180px;object-fit:cover;border-radius:10px}
+    .caption{font-size:14px;margin-top:8px;color:#6c5563}
+
+    /* Dashboard modal */
+    .modal{position:fixed;right:18px;top:80px;width:320px;background:var(--card);padding:14px;border-radius:14px;box-shadow:0 18px 40px rgba(74,58,70,0.12)}
+    .modal h3{margin:0 0 8px 0}
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+    .field input[type=text], .field textarea{padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)}
+    .file{display:flex;gap:8px;align-items:center}
+
+    /* Surprise */
+    .surprise{display:flex;align-items:center;gap:8px}
+
+    /* Footer */
+    footer{margin-top:22px;color:#7a5966;opacity:0.9}
+
+    /* Sakura petals animation */
+    .petal{position:fixed;width:18px;height:18px;background:radial-gradient(circle at 30% 30%, #fff, #ffd6e8);border-radius:50% 50% 50% 50%;transform:rotate(20deg);pointer-events:none;z-index:6;opacity:0.95}
+
+    /* Responsive */
+    @media (max-width:700px){.hero h1{font-size:32px}.modal{position:static;width:100%;margin-top:12px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>
+          <!-- simple sakura icon -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2c.9 1.6 3 2 3 4 1 0 3 1 2 3 0 2-2 3-2 4s1 3-1 3c-2 0-3-2-4-2s-3 2-4 2-1-2-1-3c0-1-2-2-2-4 0-2 2-3 3-3 0-2 2-3 3-4z" fill="#ffd6e8"/>
+          </svg>
+        </div>
+        <div>
+          <div class="title">Sakura Bridge Memories</div>
+          <div style="font-size:12px;color:#8b6a77;margin-top:4px">The Sakura Bridge — where our story began</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#home" class="active" data-tab="home">Home</a>
+        <a href="#gallery" data-tab="gallery">Gallery</a>
+        <a href="#messages" data-tab="messages">Messages</a>
+        <a href="#surprise" data-tab="surprise">Surprise</a>
+        <a href="#dashboard" id="openDash">Dashboard</a>
+      </nav>
+    </header>
+
+    <main style="width:100%;max-width:980px">
+      <section class="hero card" id="home">
+        <div style="display:flex;gap:20px;align-items:center;">
+          <div class="left">
+            <h1>Welcome to our Sakura Bridge Memories</h1>
+            <p>Under the sakura lights — the night we began. Jelajahi foto, lagu, dan surat yang menyimpan kenangan kita.</p>
+            <div class="controls">
+              <button class="btn" id="playPause">▶ Play Music</button>
+              <button class="btn" id="surpriseBtn">Open Surprise</button>
+            </div>
+          </div>
+          <div style="flex:1;display:flex;align-items:center;justify-content:center">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><rect rx='18' width='100%' height='100%' fill='%23fff7fb'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%238b4866' font-family='Great Vibes, cursive'>Our Night</text></svg>" alt="sakura-art" style="width:220px;border-radius:12px;box-shadow:var(--shadow)"/>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" style="margin-top:18px">
+        <h2 style="margin:0 0 10px 4px">Gallery</h2>
+        <div class="grid" id="galleryGrid">
+          <!-- generated cards -->
+        </div>
+      </section>
+
+      <section id="messages" style="margin-top:18px">
+        <h2 style="margin:0 0 10px 4px">Messages & Letters</h2>
+        <div class="card" id="messageList">
+          <p style="margin:0;color:#7a5966">Belum ada pesan. Tambahkan di dashboard.</p>
+        </div>
+      </section>
+
+      <section id="surprise" style="margin-top:18px">
+        <h2 style="margin:0 0 10px 4px">Surprise</h2>
+        <div class="card">
+          <p style="margin:0 0 8px 0">Tekan tombol <strong>Open Surprise</strong> di atas untuk melihat pesan khusus.</p>
+        </div>
+      </section>
+
+      <footer>
+        <small>Made with ❤️ — Sakura Bridge Memories</small>
+      </footer>
+    </main>
+
+    <!-- Dashboard (quick panel) -->
+    <aside class="modal" id="dashboard" aria-hidden="true">
+      <h3>Dashboard</h3>
+      <div class="field">
+        <label>Tambah Foto (preview disimpan di browser)</label>
+        <div class="file">
+          <input id="photoInput" type="file" accept="image/*">
+          <button class="btn" id="addPhotoBtn">Add</button>
+        </div>
+        <input id="photoCaption" type="text" placeholder="Caption untuk foto ini...">
+      </div>
+
+      <div class="field">
+        <label>Music — pilihan</label>
+        <small style="color:#8b6a77">Kamu bisa: upload MP3 lokal (akan diputar di browser) atau paste link YouTube (contoh: Taylor Swift - Enchanted)</small>
+        <input id="audioFile" type="file" accept="audio/*">
+        <input id="youtubeUrl" type="text" placeholder="Paste YouTube watch URL (contoh: https://www.youtube.com/watch?v=...)">
+        <button class="btn" id="setMusic">Set Music</button>
+      </div>
+
+      <div class="field">
+        <label>Tambah Pesan / Surat</label>
+        <textarea id="newMessage" rows="3" placeholder="Tulis surat singkat atau ucapan..." ></textarea>
+        <button class="btn" id="addMessage">Add Message</button>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+        <button class="btn" id="exportBtn">Export (JSON)</button>
+        <button class="btn" id="clearBtn">Clear All</button>
+      </div>
+
+      <small style="display:block;margin-top:10px;color:#9b7a86">Note: Semua data disimpan lokal di browser (LocalStorage). Kalau mau simpan permanen, download export JSON atau hosting sendiri.</small>
+    </aside>
+
+    <!-- audio and iframe area (hidden) -->
+    <div id="mediaHolder" style="display:none"></div>
+
+  </div>
+
+  <script>
+    /* ---------- Utilities & state ---------- */
+    const state = {
+      photos: JSON.parse(localStorage.getItem('sbm_photos')||'[]'),
+      messages: JSON.parse(localStorage.getItem('sbm_messages')||'[]'),
+      music: JSON.parse(localStorage.getItem('sbm_music')||'{}')
+    }
+
+    /* ---------- DOM refs ---------- */
+    const galleryGrid = document.getElementById('galleryGrid')
+    const messageList = document.getElementById('messageList')
+    const photoInput = document.getElementById('photoInput')
+    const photoCaption = document.getElementById('photoCaption')
+    const addPhotoBtn = document.getElementById('addPhotoBtn')
+    const addMessageBtn = document.getElementById('addMessage')
+    const newMessage = document.getElementById('newMessage')
+    const setMusicBtn = document.getElementById('setMusic')
+    const audioFile = document.getElementById('audioFile')
+    const youtubeUrl = document.getElementById('youtubeUrl')
+    const mediaHolder = document.getElementById('mediaHolder')
+    const playPauseBtn = document.getElementById('playPause')
+    const surpriseBtn = document.getElementById('surpriseBtn')
+    const dashboard = document.getElementById('dashboard')
+    const openDash = document.getElementById('openDash')
+    const exportBtn = document.getElementById('exportBtn')
+    const clearBtn = document.getElementById('clearBtn')
+
+    /* ---------- Render functions ---------- */
+    function renderGallery(){
+      galleryGrid.innerHTML = ''
+      if(state.photos.length===0){
+        galleryGrid.innerHTML = '<div class="card">Belum ada foto. Tambahkan di dashboard.</div>'
+        return
+      }
+      state.photos.slice().reverse().forEach((p,idx)=>{
+        const card = document.createElement('div'); card.className='card'
+        const img = document.createElement('img'); img.className='thumb'; img.src = p.data; img.alt = p.caption||'Foto kenangan'
+        const cap = document.createElement('div'); cap.className='caption'; cap.textContent = p.caption||''
+        const del = document.createElement('button'); del.className='btn'; del.textContent='Delete'; del.style.marginTop='8px';
+        del.onclick=()=>{ if(confirm('Hapus foto ini?')){ state.photos.splice(state.photos.length-1-idx,1); saveState(); renderGallery(); }}
+        card.appendChild(img); card.appendChild(cap); card.appendChild(del)
+        galleryGrid.appendChild(card)
+      })
+    }
+
+    function renderMessages(){
+      if(state.messages.length===0){ messageList.innerHTML='<p style="margin:0;color:#7a5966">Belum ada pesan. Tambahkan di dashboard.</p>'; return }
+      messageList.innerHTML=''
+      state.messages.slice().reverse().forEach((m)=>{
+        const d = document.createElement('div'); d.className='card'; d.style.marginBottom='8px'; d.innerHTML = `<div style="font-weight:600">${escapeHtml(m.title||'Message')}</div><div style='margin-top:6px;color:#6c5563'>${escapeHtml(m.body)}</div>`
+        messageList.appendChild(d)
+      })
+    }
+
+    function saveState(){
+      localStorage.setItem('sbm_photos', JSON.stringify(state.photos))
+      localStorage.setItem('sbm_messages', JSON.stringify(state.messages))
+      localStorage.setItem('sbm_music', JSON.stringify(state.music))
+    }
+
+    function escapeHtml(str){ return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+
+    /* ---------- Photo add ---------- */
+    addPhotoBtn.addEventListener('click',()=>{
+      const file = photoInput.files[0]
+      const cap = photoCaption.value.trim()
+      if(!file){ alert('Pilih gambar dulu.'); return }
+      const reader = new FileReader()
+      reader.onload = ()=>{
+        state.photos.push({data: reader.result, caption: cap, added: Date.now()})
+        saveState(); renderGallery(); photoInput.value=''; photoCaption.value=''
+      }
+      reader.readAsDataURL(file)
+    })
+
+    /* ---------- Message add ---------- */
+    addMessageBtn.addEventListener('click',()=>{
+      const txt = newMessage.value.trim()
+      if(!txt){ alert('Tulis pesannya dulu.'); return }
+      state.messages.push({title:'From you', body: txt, added: Date.now()})
+      saveState(); renderMessages(); newMessage.value=''
+    })
+
+    /* ---------- Music set (mp3 or youtube) ---------- */
+    function clearMedia(){ mediaHolder.innerHTML=''; }
+
+    setMusicBtn.addEventListener('click',()=>{
+      // prefer local mp3 if provided
+      if(audioFile.files.length>0){
+        const f = audioFile.files[0];
+        const url = URL.createObjectURL(f)
+        state.music = {type:'mp3',src:url,name:f.name}
+        saveState(); setupPlayer(); alert('Audio MP3 disetel — disimpan lokal di browser untuk sesi ini.')
+        return
+      }
+      const y = youtubeUrl.value.trim()
+      if(y){
+        // try to convert watch?v= link to embed
+        const idMatch = y.match(/[?&]v=([^&]+)/) || y.match(/youtu\.be\/(.+)$/)
+        const id = idMatch? idMatch[1] : null
+        if(!id){ alert('URL YouTube tidak dikenali. Gunakan format watch?v= atau youtu.be/.'); return }
+        state.music = {type:'youtube',src:'https://www.youtube.com/embed/'+id+'?rel=0&modestbranding=1',name:'YouTube'}
+        saveState(); setupPlayer(); alert('YouTube disetel — klik Play untuk memulai.')
+        return
+      }
+      alert('Pilih file MP3 atau paste link YouTube terlebih dahulu.')
+    })
+
+    function setupPlayer(){
+      clearMedia()
+      if(!state.music || !state.music.type) return
+      if(state.music.type==='mp3'){
+        const audio = document.createElement('audio'); audio.src = state.music.src; audio.controls = true; audio.id='mainAudio'; audio.loop=true; audio.style.width='100%'
+        mediaHolder.appendChild(audio)
+      } else if(state.music.type==='youtube'){
+        const iframe = document.createElement('iframe'); iframe.width='100%'; iframe.height='160'; iframe.allow='autoplay; encrypted-media'; iframe.src = state.music.src; iframe.frameBorder='0'; iframe.id='ytframe'
+        mediaHolder.appendChild(iframe)
+      }
+    }
+
+    // Play/pause generalized
+    playPauseBtn.addEventListener('click',()=>{
+      const audio = document.getElementById('mainAudio')
+      const iframe = document.getElementById('ytframe')
+      if(audio){ if(audio.paused){ audio.play(); playPauseBtn.textContent='⏸ Pause Music' } else { audio.pause(); playPauseBtn.textContent='▶ Play Music' } return }
+      if(iframe){ // send postMessage to iframe to start (YouTube player API needed for robust control). We'll simply advise user to press play on video.
+        alert('YouTube embedded — silakan klik tombol play di pemutar YouTube yang muncul. Untuk autoplay pada browser modern, izin autoplay dibatasi.')
+      } else {
+        alert('Belum ada musik disetel. Buka Dashboard → Music untuk menambahkan.')
+      }
+    })
+
+    /* ---------- Surprise behavior ---------- */
+    surpriseBtn.addEventListener('click', ()=>{
+      showSurprise()
+    })
+    function showSurprise(){
+      // gentle confetti + modal message
+      burstPetals(30)
+      const msg = document.createElement('div'); msg.style.position='fixed'; msg.style.left='50%'; msg.style.top='50%'; msg.style.transform='translate(-50%,-50%)'; msg.style.background='linear-gradient(180deg,#fff, #fff7fb)'; msg.style.padding='18px'; msg.style.borderRadius='14px'; msg.style.boxShadow='0 20px 40px rgba(0,0,0,0.12)'; msg.style.zIndex=9999
+      msg.innerHTML = `<div style="font-family:'Great Vibes',cursive;font-size:28px;color:#8b4866">Happy 3rd Anniversary ❤️</div><div style="margin-top:8px;color:#6c5563">Malam itu di Jembatan Sakura — tempat semua mimpi kecil kita mulai. May every petal remind you how love keeps blooming 🌸.</div><div style="margin-top:12px;display:flex;gap:8px;justify-content:center"><button id='closeSurprise' class='btn'>Close</button></div>`
+      document.body.appendChild(msg)
+      document.getElementById('closeSurprise').onclick = ()=>{ msg.remove() }
+    }
+
+    /* ---------- Petals animation (gentle) ---------- */
+    function spawnPetal(){
+      const p = document.createElement('div'); p.className='petal'
+      const startX = Math.random()*window.innerWidth
+      p.style.left = startX + 'px'; p.style.top = '-20px';
+      p.style.opacity = (0.6 + Math.random()*0.4).toString()
+      p.style.transform = `rotate(${Math.random()*360}deg)`
+      document.body.appendChild(p)
+
+      const dur = 7000 + Math.random()*5000
+      const endX = startX + (Math.random()*200 - 100)
+      p.animate([
+        {transform:`translateY(0px) rotate(${Math.random()*360}deg)`, opacity: p.style.opacity},
+        {transform:`translateY(${window.innerHeight + 60}px) rotate(${Math.random()*720}deg)`, left: endX+'px', opacity:0.6}
+      ],{duration:dur, easing:'linear'})
+
+      setTimeout(()=>{ p.remove() }, dur+50)
+    }
+    function burstPetals(n){ for(let i=0;i<n;i++){ setTimeout(spawnPetal, i*60) } }
+    // gentle continuous spawn
+    setInterval(()=>{ if(Math.random()<0.6) spawnPetal() }, 900)
+
+    /* ---------- Tiny helpers ---------- */
+    openDash.addEventListener('click',(e)=>{ e.preventDefault(); dashboard.style.display = 'block'; dashboard.setAttribute('aria-hidden','false') })
+    document.querySelectorAll('nav a[data-tab]').forEach(a=>{ a.addEventListener('click', (e)=>{ e.preventDefault(); document.querySelectorAll('nav a').forEach(n=>n.classList.remove('active')); a.classList.add('active'); const t=a.dataset.tab; document.getElementById(t).scrollIntoView({behavior:'smooth'}) }) })
+
+    exportBtn.addEventListener('click', ()=>{
+      const data = {photos: state.photos, messages: state.messages, music: state.music}
+      const blob = new Blob([JSON.stringify(data, null, 2)],{type:'application/json'})
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a'); a.href=url; a.download='sakura-bridge-memories.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url)
+    })
+
+    clearBtn.addEventListener('click', ()=>{ if(confirm('Hapus semua data lokal?')){ state.photos=[]; state.messages=[]; state.music={}; saveState(); renderGallery(); renderMessages(); clearMedia(); alert('Data di browser sudah dihapus.') } })
+
+    /* ---------- Init ---------- */
+    renderGallery(); renderMessages(); setupPlayer();
+
+    // load default suggestion: user wanted "Enchanted" — we prompt them with instruction
+    // (we don't auto-embed copyrighted audio). Add a soft hint in youtubeUrl placeholder.
+    youtubeUrl.placeholder = 'Paste YouTube link for "Enchanted - Taylor Swift" or other song (optional)'
+
+    /* Accessibility: keyboard close modal with Esc */
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ dashboard.style.display='none'; dashboard.setAttribute('aria-hidden','true') } })
+
+    /* small note: to autoplay YouTube reliably you'd need YouTube iframe API and user gesture policies — we keep control manual for best UX */
+  </script>
+<!-- Auto music + sparkle effect + credit -->
+<audio id="mainAudio" src="Enchanted.mp3" autoplay loop></audio>
+<canvas id="sparkleCanvas" style="position:fixed;top:0;left:0;width:100%;height:150px;pointer-events:none;z-index:15;"></canvas>
+
+<div id="nowPlaying"
+style="position:fixed;right:14px;bottom:14px;background:rgba(255,255,255,0.9);padding:8px 10px;
+border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.08);font-size:13px;color:#8b4866;z-index:20">
+🎵 Currently playing: Enchanted – Taylor Swift
+</div>
+
+<div id="credit"
+style="position:fixed;left:14px;bottom:14px;background:rgba(255,255,255,0.8);padding:8px 10px;
+border-radius:12px;font-size:13px;color:#b96b8e;z-index:20">
+Made with love by Ifada for Mazza 💕
+</div>
+
+<script>
+const audio = document.getElementById('mainAudio');
+const sparkle = document.getElementById('sparkleCanvas');
+const ctx = sparkle.getContext('2d');
+function resize(){sparkle.width=window.innerWidth;sparkle.height=150;}
+window.addEventListener('resize',resize);resize();
+let stars=[];
+function create(){return{x:Math.random()*sparkle.width,y:Math.random()*sparkle.height,
+vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.1)*0.2,s:1+Math.random()*1.5,a:0.4+Math.random()*0.6,l:80+Math.random()*100};}
+function draw(){ctx.clearRect(0,0,sparkle.width,sparkle.height);
+if(!audio.paused){for(let i=0;i<2;i++)stars.push(create());}
+for(let i=stars.length-1;i>=0;i--){let p=stars[i];
+ctx.globalAlpha=p.a*(p.l/180);ctx.fillStyle='white';ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,2*Math.PI);
+ctx.shadowBlur=10;ctx.shadowColor='white';ctx.fill();p.x+=p.vx;p.y+=p.vy;p.l--;if(p.l<=0)stars.splice(i,1);}
+requestAnimationFrame(draw);}
+draw();
+document.body.addEventListener('click',()=>audio.play());
+</script>
+</body>
+</html>
